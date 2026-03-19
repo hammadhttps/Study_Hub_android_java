@@ -11,6 +11,7 @@ import com.example.a21l_5812_smd_a2.R;
 import com.example.a21l_5812_smd_a2.adapters.SubjectAdapter;
 import com.example.a21l_5812_smd_a2.Models.Subject;
 import com.example.a21l_5812_smd_a2.Models.Folder;
+import com.example.a21l_5812_smd_a2.Models.NoteImage;
 import com.example.a21l_5812_smd_a2.utils.SharedPrefManager;
 import java.util.ArrayList;
 
@@ -46,7 +47,7 @@ public class SubjectsFragment extends Fragment implements SubjectAdapter.OnSubje
         if (subjectList == null || subjectList.isEmpty()) {
             subjectList = new ArrayList<>();
             subjectList.add(new Subject("Data Structures", 12, R.drawable.ic_dsa));
-            subjectList.add(new Subject("Operating Systems", 8, R.drawable.ic_dsa)); // Using available ic_dsa
+            subjectList.add(new Subject("Operating Systems", 8, R.drawable.ic_dsa)); 
             subjectList.add(new Subject("Artificial Intelligence", 15, R.drawable.ic_dsa));
             subjectList.add(new Subject("Software for Mobile Devices", 10, R.drawable.ic_dsa));
             
@@ -59,11 +60,26 @@ public class SubjectsFragment extends Fragment implements SubjectAdapter.OnSubje
     }
     
     private void addSampleFolders() {
+        String packageName = requireContext().getPackageName();
+        String img1Uri = "android.resource://" + packageName + "/" + R.drawable.img1;
+        String img2Uri = "android.resource://" + packageName + "/" + R.drawable.img2;
+
         for (Subject subject : subjectList) {
-            subject.getFolders().add(new Folder("Lectures", 24, R.drawable.ic_folder));
-            subject.getFolders().add(new Folder("Assignments", 15, R.drawable.ic_folder));
-            subject.getFolders().add(new Folder("Quiz Preparation", 32, R.drawable.ic_folder));
-            subject.getFolders().add(new Folder("Lab Work", 18, R.drawable.ic_folder));
+            Folder lectures = new Folder("Lectures", 2, R.drawable.ic_folder);
+            lectures.getImages().add(new NoteImage(img1Uri, "Lecture Note 1"));
+            lectures.getImages().add(new NoteImage(img2Uri, "Lecture Note 2"));
+            subject.getFolders().add(lectures);
+
+            Folder assignments = new Folder("Assignments", 1, R.drawable.ic_folder);
+            assignments.getImages().add(new NoteImage(img1Uri, "Assignment 1"));
+            subject.getFolders().add(assignments);
+
+            Folder quizPrep = new Folder("Quiz Preparation", 1, R.drawable.ic_folder);
+            quizPrep.getImages().add(new NoteImage(img2Uri, "Quiz Prep 1"));
+            subject.getFolders().add(quizPrep);
+
+            Folder labWork = new Folder("Lab Work", 0, R.drawable.ic_folder);
+            subject.getFolders().add(labWork);
         }
     }
     
