@@ -5,20 +5,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    android:padding="16dp"
-    tools:context=".fragments.FoldersFragment">
+    android:padding="12dp"
+    tools:context=".fragments.SubjectsFragment">
+
 
     <TextView
-        android:id="@+id/txtSubjectName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:text="Subjects"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/primary_blue"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="12dp"
+        tools:ignore="HardcodedText" />
 
-    <ListView
-        android:id="@+id/listView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
