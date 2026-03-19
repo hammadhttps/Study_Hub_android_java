@@ -26,14 +26,11 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
     }
 
 
-
-
-    public SubjectAdapter onCreateViewHolder(ArrayList<Subject> subjectList, OnSubjectClickListener listener) {
+    public SubjectAdapter(ArrayList<Subject> subjectList, OnSubjectClickListener listener) {
         this.subjectList = subjectList;
         this.listener = listener;
-        return this;
-
     }
+
 
 
     @NonNull
